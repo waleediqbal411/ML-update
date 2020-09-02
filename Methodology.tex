@@ -1,0 +1,103 @@
+\section{Data Collection and Methodology}
+\label{sec:methodology}
+
+\begin{table*}[!h]
+	\centering
+	\scriptsize
+	\caption{Features of dataset extracted from ICML, JMLR, NeurIPS \& SIGKDD articles }
+% 	\ignacio{I'd remove ``Number'' and replace ``count'' with ``venue''}}
+	\label{tab:table1}
+	\begin{adjustbox}{width=1\textwidth}
+		\begin{tabular}{llllll} 
+\hline
+\textbf{Attribute Name}           & \textbf{Type of Attribute}  & \multicolumn{4}{c}{\textbf{Count}}  \\ 
+\hline
+                                  &                             & ICML   & JMLR  & NeurIPS & SIGKDD      \\ 
+\hline
+Number of Articles                & Numerical                   & 3453    & 3204  & 4913       & 3313        \\
+Number of Authors                 & Numerical                   & 5486   & 5302  & 6765       & 5612        \\
+Number of Institutes              & Numerical                   & 2013    & 1875   & 1014       & 1783        \\
+Number of References              & Numerical                   & 89596 & 104633 & 112673       & 83911        \\
+Citations of Articles             & Numerical                   & 99845  & 210684 & 204795       & 165392        \\
+Number of Participating countries & Numerical                   & 51   & 56  & 54       & 54        \\
+Number of Keywords                & Numerical                   & 11164      & 11541     & 15845       & 14169        \\
+\hline
+\end{tabular}
+	\end{adjustbox}
+\end{table*}
+\begin{table*}[!h]
+	\centering
+	\footnotesize
+	\caption{Bibliometric indicators used in this article}
+	\label{tab:table_indicators}
+	\begin{adjustbox}{width=1\textwidth}
+		\begin{tabular}{m{3.3cm}m{3cm}m{6.5cm}} 
+			\hline
+			Dimension                                 & Indicator                           & Definition                                                                                                                         \\ 
+			\hline
+			\multirow{5}{*}{Metadata based Analysis} & Publication count (P) per author    & Number of articles published by an author                                                                                            \\ 
+			
+			& Publication count (P) per institute & Number of articles published by an institute \\ 
+			
+			& Publication count (P) per country   & Number of articles published by a country                                                                                            \\ 
+			
+			& h-index of an author                & h-index of a researcher (h) shows us that \textit{h} articles of a researcher have~got \textit{h} citations \\ 
+			
+			& Reference count per article           & Number of references used in an article                                                                                               \\ 
+			\hline
+			Content-based Analysis                    & Readability scores                  & Score indicates the difficulty level of language for intended audience              \\ 
+			\hline
+			\multirow{2}{*}{Citation based Analysis}  & Citation count per keyword          & Total number of citation against a keyword                                                                                         \\ 
+			
+			& Citation count per author           & Total number of citation obtained by an author                                                                                     \\
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+\end{table*}
+We start by describing our data collection methodology. There are several publication venue types in the field of machine learning, some of that publish conference articles and journal articles. To capture a broad swathe of these, we sample 
+% \ignacio{sample? or exhaustive collection of all papers in those venues for the period considered?} 
+from 4 different well known publication outlets. 
+
+
+\subsection{Dataset Collection}
+
+To perform the analysis of these top venues, we used a collection of 14,880 articles. This contains 3452 articles from International Conference on Machine Learning (ICML)\footnote{https://www.icml.cc/} 2004--2019 
+% \ignacio{if it is the same period for all, just mention it once -though I agree with Gareth that it would be cool to include all years available}
+, 3,204 articles from Journal of Machine Learning Research (JMLR)\footnote{http://www.jmlr.org/} 2004--2019, 4912 articles from Conference on Neural Information Processing Systems (NeurIPS)\footnote{https://nips.cc/} 2004--2019, and 3312 articles from SIGKDD Conference on Knowledge Discovery and Data Mining (SIGKDD)\footnote{http://www.SIGKDD.org/SIGKDD2020} 2004--2019. We chose this duration to avoid missing data and keep our dataset consistant.
+
+We chose ICML, JMLR, NeurIPS, and SIGKDD because all of these four venues cover different aspects of machine learning research. ICML, JMLR, and NeurIPS cover theoretical aspects of machine learning whereas SIGKDD leans towards data engineering and application aspects of machine learning. Our dataset allows us to perform a comparative analysis of machine learning research based on theoretical and application based studies. Details of the features extracted from these articles are shown in Table \ref{tab:table1}. The data was obtained from various sources, including ACM Digital Library\footnote{https://dl.acm.org/}, Scopus\footnote{https://www.scopus.com} and CrossRef\footnote{https://www.crossref.org}. Data from the CrossRef repository were scraped using Harzing's Publish or Perish' utility\footnote{https://harzing.com/resources/publish-or-perish}.
+
+
+\subsection{Feature Extraction}
+
+We next describe how we perform feature extraction across the our dataset.
+
+\subsubsection{Dataset Pre-processing}
+
+Data was obtained in CSV (Comma Separated Values) format from the aforementioned scientific repositories. The CSV files contain bibliographic details such as authors' name, affiliation, citation count, publication year and references used in an article. Incomplete and irrelevant entries were removed from the dataset. These entries include messages from editors, entries without references, and entries without relevant metadata such as author names, institute names and indexed keywords. Details of the features extracted from these articles are shown in Table \ref{tab:table1}.
+
+Two further pre-processing tasks were performed on the extracted text: (a) calculation of number of metadata elements such as authors, institutes, countries; (b) Finding the number of references in an article cited and number of references in an article cited from the previous decade's published articles. For references, we used an in-house formula script in Microsoft Excel and a python scripts as final step, which takes the list of all references for an article and outputs the total number of references, for the past decade. 
+% \ignacio{decade? why?}
+
+To construct a collaboration network, we created an adjacency list from the entries of author names and their affiliations.
+
+
+\subsection{Bibliometric Indicators}
+
+In this study, we used several bibliometric indicators in order to measure the impact of research published in ICML, JMLR, NeurIPS, and SIGKDD. Details of these bibliometric indicators are shown in Table \ref{tab:table_indicators}. Here, we briefly list the methodologies we will use in the remainder of the paper. 
+
+
+\begin{itemize}
+	
+	\item \textit{Statistical Analysis}: There are a number of analyses that come under the umbrella of statistical analysis, but our focus, for the most part, will be on occurrence-based analysis \citep{weatherburn1949first} in this study for finding significant entities either in terms of publications count or in terms of citation and h-index count. 
+	
+	\item \textit{Social Network Analysis}: Social network analysis is useful in finding connections and relations between various entities. These relations cannot be observed through statistical analysis. Social network analyses are useful in finding hidden communities within data, e.g., we used a modularity class-based clustering technique \citep{blondel2008fast} for finding various communities in our data. To find the significance of a single node, we used an average degree algorithm.
+	
+	\item \textit{Topic Modeling}: Another well-known method of extracting features from the raw text is Topic Modeling.  One of the best-known algorithms for topic modeling is Latent Dirichlet Allocation (LDA). LDA takes the raw text, the number of topics, and a dictionary of words as input, and then provides as an output the most significant topics \citep{blei2003latent}. We used LDA on our dataset to explore significant topics in COMST and TON. For LDA, we used a Python implementation of the Gensim\footnote{https://radimrehurek.com/gensim/} library. We kept the number of latent output topics to 10 and iterated our algorithms 400 times on our dataset in order to achieve converged results.    
+\end{itemize}
+
+
+% \gareth{My sense is that it's safe to remove this subsection - not sure there is much value in listing these methodologies here. We can simply introduce them in the subsequent analysis sections.}
+
+The rest of this paper will explore our dataset through the lens of the above analytical techniques. 
+We performed analysis over data explicitly in section \ref{sec:metadata}, \ref{sec:content} and \ref{sec:citation} respectively.

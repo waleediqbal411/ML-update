@@ -1,0 +1,110 @@
+\documentclass[10pt,sigconf,letterpaper,anonymous]{acmart}
+
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{epstopdf}
+\usepackage{authblk}
+%\usepackage{placeins}
+\usepackage{ragged2e}
+\usepackage{xspace}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[nolist]{acronym}
+\usepackage{booktabs}
+\usepackage{etoolbox}
+\usepackage{balance}
+
+%Conference Info
+%\acmYear{2019}
+%\copyrightyear{2019}
+%\setcopyright{acmcopyright}
+%\acmConference{CoNEXT '18}{December 4--7, 2019}{Heraklion/Crete, Greece}
+%\acmPrice{TBA}
+%\acmDOI{TBA}
+%\acmISBN{TBA}
+
+
+
+\newcommand{\etal}{\textit{et al}.}
+\newcommand{\ie}{\textit{i}.\textit{e}., }
+\newcommand{\eg}{\textit{e}.\textit{g}., }
+
+%rfc totals
+
+
+\def\commentsoff{1}  %uncomment to hide comments
+
+\ifx\commentsoff\undefined
+
+	\newcommand\gareth[1]{\textbf{\textcolor{blue}{GT: #1}}	}
+	\newcommand\ignacio[1]{\textbf{\textcolor{orange}{IG: #1}}	}
+	\newcommand\waleed[1]{\textbf{\textcolor{green}{WI: #1}}	}
+
+\else
+	\newcommand\ignacio[1]{}
+	\newcommand\gareth[1]{}
+	\newcommand\waleed[1]{}
+\fi
+
+ \setcopyright{none}
+ \settopmatter{printacmref=false}
+
+\renewcommand{\floatpagefraction}{0.8}
+\begin{document}
+	\input{acros}
+
+
+	\title{A Bibliometric Analysis of Publications in Machine Learning Research}
+
+ %\subtitle{Paper \# XXX, XXX pages}
+	% \author{Firstname Lastname}
+	% \authornote{Note}
+	% \orcid{1234-5678-9012}
+	% \affiliation{%
+	%   \institution{Affiliation}
+	%   \streetaddress{Address}
+	%   \city{City}
+	%   \state{State}
+	%   \postcode{Zipcode}
+	% }
+	% \email{email@domain.com}
+
+
+	\begin{abstract}
+		Machine Learning is a major research discipline in computer science, mathematics, and other technical domains. The field has been actively growing, in terms of both research and development, for the past several decades. This study uses the article content and metadata of four important machine learning periodicals ---International Conference on Machine Learning (ICML), Journal of Machine Learning Research (JMLR), Conference on Neural Information Processing Systems (NeurIPS), and SIGKDD Conference on Knowledge Discovery and Data Mining (SIGKDD)--- obtained using ACM, Scopus and CrossRef, for 16--year period (2004--2019) to address important bibliometrics questions. All of the venues are prestigious, yet they publish quite different research. The first two of these periodicals (ICML and JMLR) are highly reputed venues for publishing machine learning based studies in this fields, NeurIPS are known for publishing deep learning and Neural Networks based research while SIGKDD is considered the top conference for publishing research related to data mining and machine learning. In this study, we aim to track the co-evolution of trends in the ICML, JMLR, NeurIPS, and SIGKDD. Our analyses of the machine learning literature include: (a) metadata analysis; (b) content-based analysis; and (c) citation analysis. In addition, we identify the significant trends and the most influential authors, institutes and countries, based on the publication count as well as article citations. Through this study, we are proposing a methodology and framework for performing a comprehensive bibliometric analysis on machine learning research.
+
+
+	\end{abstract}
+
+	\maketitle
+
+\input{introduction.tex}
+\input{Related_work.tex}
+\input{Methodology.tex}
+\input{results.tex}
+\input{Conclusion.tex}
+	\balance
+	\bibliographystyle{ACM-Reference-Format}
+	\bibliography{reference}
+	%
+	%
+%	\newpage
+%	\input{other}
+
+
+
+\end{document}
